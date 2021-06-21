@@ -1,4 +1,55 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
+{% load static %}
 
-{% block title %}{{title}}{% endblock %}
-{% block note %}{{note}}{% endblock %}
+
+{% block title %} {{ title }} {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="counter">
+  {% verbatim %}
+  Timer: {{ counter }}
+  {% endverbatim %}
+</div>
+<div id="list-rendering">
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      {% verbatim %}
+      <div class="card-info primary large-10 medium-10 small-12 large-offset-1 medium-offset-1 cell"
+        v-for="sugg in suggestions">
+        <div class="card-info-content">
+          <h3 class="lead">Question: {{ sugg.suggestion }}</h3>
+          <p>Asked by {{ sugg.author }}</p>
+          <ul>Correct Count: </ul>
+          <ul>Incorrect Count: </ul>
+          <div class="grid-x">
+            <div class="card-info primary large-10 medium-10 small-12 large-offset-1 medium-offset-1 cell"
+              v-for="comm in sugg.comments">
+              <div class="card-info-content">
+                <h3 class="lead card-info-content2"> {{ comm.comment }}</h3>
+                <p>Answered by {{ comm.author }}</p>
+              </div>
+            </div>
+            {% endverbatim %}
+            {% if user.is_authenticated %}
+            <div class="large-10 medium-10 small-12 cell">
+              <a :href="'/comment/'+ sugg.id +'/'" class="button">Answer</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="{% static 'js/myvue.js' %}"></script>
+{% endblock %}
