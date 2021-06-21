@@ -24,11 +24,12 @@
   {% endif %}
 </h1>
 
-
-
 <body>
   <!--nav bar-->
   <div class="top-bar">
+    {% if user.is_authenticated %}
+    <a href="/">Home</a>
+    {% endif %}
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         {% if user.is_authenticated %}
