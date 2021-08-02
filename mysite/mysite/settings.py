@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-1w-!#^_gh1xden7(@m%h!zszrl@g8u8472w5&43$wx+ulwiefp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'worlddebateapp.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://worlddebateapp.herokuapp.com']
 
 
 # Application definition
